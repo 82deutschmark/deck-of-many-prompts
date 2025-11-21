@@ -1063,7 +1063,7 @@ def nato(x: str):
 
 def natod(x: str):
     decoded = ''.join(nato_decode.get(m, m) for m in x.split()).lower()
-    unknown = repr(list(m for m in x.split() if m not in morse_decode))
+    unknown = repr(list(m for m in x.split() if m not in nato_decode))
     return decoded, unknown
 
 @rt('/nato')
