@@ -439,7 +439,7 @@ def handle_undo(func):
 
 def handle_selection(func):
     # intentionally skip @wraps to mess with the signature
-    def wrapper(x: str, prefix: str, selected: str, suffix: str):
+    def wrapper(x: str, prefix: str = '', selected: str = '', suffix: str = ''):
         if selected == '': return prompt(func(x))
         return prompt(f'{prefix}{func(selected)}{suffix}')
     # @rt(...) needs the func name to infer the method (get/post/...)
@@ -1322,7 +1322,7 @@ def post(text_to_img: str, text_color: str, bg_color: str):
 # TODO: replace with a decorator that take extra args as a param
 def handle_selection_alt(func):
     # intentionally skip @wraps to mess with the signature
-    def wrapper(x: str, prefix: str, selected: str, suffix: str, from_lang: str, to_lang: str):
+    def wrapper(x: str, prefix: str = '', selected: str = '', suffix: str = '', from_lang: str = 'en', to_lang: str = 'fr'):
         if selected == '': return prompt(func(x, from_lang=from_lang, to_lang=to_lang))
         return prompt(f'{prefix}{func(selected, from_lang=from_lang, to_lang=to_lang)}{suffix}')
     # @rt(...) needs the func name to infer the method (get/post/...)
